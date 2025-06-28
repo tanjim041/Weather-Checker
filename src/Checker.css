@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: #e8f0fe;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.checker-wrapper {
+  background: white;
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #0a3d62;
+  font-weight: 700;
+}
+
+.search-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid #d0d7e5;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #0a3d62;
+  outline: none;
+}
+
+.search-btn {
+  background-color: #0a3d62;
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #063353;
+}
+
+.info-text {
+  color: #4a6fa5;
+  font-style: italic;
+}
+
+.error-text {
+  color: #d63031;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.weather-card {
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  background: #f0f6ff;
+  box-shadow: 0 4px 15px rgba(10, 61, 98, 0.1);
+}
+
+.location {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0a3d62;
+  margin-bottom: 0.3rem;
+}
+
+.weather-icon {
+  margin: 0.5rem 0;
+}
+
+.temperature {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0a3d62;
+  margin: 0.3rem 0;
+}
+
+.description {
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  color: #4a6fa5;
+  margin-bottom: 1.2rem;
+}
+
+.extra-info {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1rem;
+  color: #3c5a91;
+}
