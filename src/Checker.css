@@ -1,118 +1,175 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  background: #e8f0fe;
-  margin: 0;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle at top, #0f0f0f, #1a1a1a, #000000);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  overflow: hidden;
 }
 
 .checker-wrapper {
-  background: white;
-  max-width: 400px;
-  width: 100%;
-  padding: 2rem 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px 25px;
+  border-radius: 25px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+  width: 350px;
   text-align: center;
+  transition: all 0.3s ease-in-out;
 }
 
 .title {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  color: #0a3d62;
-  font-weight: 700;
+  color: #00ffff;
+  font-size: 26px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px #00ffff80;
 }
 
 .search-section {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.input-wrapper {
+  position: relative;
+  flex-grow: 1;
 }
 
 .search-input {
-  flex-grow: 1;
-  padding: 0.7rem 1rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 2px solid #d0d7e5;
-  transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-weight: 500;
+  box-shadow: inset 0 0 5px #00ffff33;
+  transition: 0.3s;
+}
+
+.search-input::placeholder {
+  color: #bbb;
 }
 
 .search-input:focus {
-  border-color: #0a3d62;
   outline: none;
+  box-shadow: 0 0 10px #00ffff88;
 }
 
 .search-btn {
-  background-color: #0a3d62;
-  color: white;
+  padding: 12px 20px;
+  background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
   border: none;
-  padding: 0 1.5rem;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 12px;
+  color: #00ffff;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: -3px -3px 6px #1f1f1f, 3px 3px 6px #000000;
 }
 
 .search-btn:hover {
-  background-color: #063353;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #00ffff99, inset 0 0 10px #00ffff33;
+}
+
+.search-btn:active {
+  transform: scale(0.95);
+  box-shadow: inset 2px 2px 5px #000;
 }
 
 .info-text {
-  color: #4a6fa5;
+  color: #00ffff;
   font-style: italic;
+  font-size: 14px;
+  margin-top: 0.5rem;
 }
 
 .error-text {
-  color: #d63031;
+  color: #ff4d4d;
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .weather-card {
-  padding: 1.5rem 1rem;
-  border-radius: 12px;
-  background: #f0f6ff;
-  box-shadow: 0 4px 15px rgba(10, 61, 98, 0.1);
+  padding: 1rem;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  margin-top: 1rem;
 }
 
 .location {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #0a3d62;
-  margin-bottom: 0.3rem;
+  font-size: 22px;
+  font-weight: 600;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff55;
 }
 
 .weather-icon {
-  margin: 0.5rem 0;
+  margin: 0.8rem 0;
 }
 
 .temperature {
-  font-size: 3rem;
+  font-size: 36px;
   font-weight: 700;
-  color: #0a3d62;
-  margin: 0.3rem 0;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff88;
 }
 
 .description {
   text-transform: capitalize;
-  font-size: 1.1rem;
-  color: #4a6fa5;
-  margin-bottom: 1.2rem;
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 1rem;
 }
 
 .extra-info {
   display: flex;
   justify-content: space-around;
-  font-size: 1rem;
-  color: #3c5a91;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.15);
+}
+
+.suggestion-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+  background-color: rgba(0, 255, 255, 0.1);
 }

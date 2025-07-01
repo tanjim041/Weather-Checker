@@ -6,6 +6,7 @@ const Checker = () => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   const fetchWeather = async (cityName) => {
     if (!cityName.trim()) {
@@ -13,20 +14,25 @@ const Checker = () => {
       setWeather(null);
       return;
     }
+
     setLoading(true);
     setError("");
+    setSuggestions([]);
+
     try {
       const apiKey = import.meta.env.VITE_APP_ID;
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
       );
       const data = await response.json();
+
       if (response.status !== 200) {
         setError(data.message || "City not found");
         setWeather(null);
         setLoading(false);
         return;
       }
+
       setWeather({
         location: data.name,
         temperature: Math.round(data.main.temp),
@@ -39,6 +45,7 @@ const Checker = () => {
       setError("Failed to fetch weather data");
       setWeather(null);
     }
+
     setLoading(false);
   };
 
@@ -50,19 +57,78 @@ const Checker = () => {
     if (e.key === "Enter") fetchWeather(city);
   };
 
+  const handleChange = async (e) => {
+    const input = e.target.value;
+    setCity(input);
+
+    if (input.length >= 2) {
+      try {
+        const apiKey = import.meta.env.VITE_APP_ID;
+        const res = await fetch(
+          `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=10&appid=${apiKey}`
+        );
+        const data = await res.json();
+
+        const filtered = data.filter((item) =>
+          item.name.toLowerCase().startsWith(input.toLowerCase())
+        );
+
+        const uniqueSuggestions = [];
+        const seen = new Set();
+
+        for (const item of filtered) {
+          const key = `${item.name},${item.country}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            uniqueSuggestions.push({
+              name: item.name,
+              country: item.country,
+            });
+          }
+        }
+
+        setSuggestions(uniqueSuggestions);
+      } catch {
+        setSuggestions([]);
+      }
+    } else {
+      setSuggestions([]);
+    }
+  };
+
   return (
     <main className="checker-wrapper">
       <h1 className="title">Weather Checker</h1>
       <section className="search-section">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Enter city name"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          onKeyDown={handleKeyDown}
-          aria-label="City name"
-        />
+        <div className="input-wrapper">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Enter city name"
+            value={city}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            aria-label="City name"
+          />
+          {suggestions.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  className="suggestion-item"
+                  onClick={() => {
+                    const fullCity = `${suggestion.name}, ${suggestion.country}`;
+                    setCity(fullCity);
+                    setSuggestions([]);
+                    fetchWeather(suggestion.name);
+                  }}
+                >
+                  {suggestion.name}, {suggestion.country}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
         <button className="search-btn" onClick={() => fetchWeather(city)}>
           Search
         </button>
